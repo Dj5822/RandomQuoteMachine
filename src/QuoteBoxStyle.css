@@ -52,5 +52,8 @@
 #quote-box #new-quote:hover {
   background-color: #40444c;
 }
+#quote-box #icon {
+  color: #282c34;
+}
 
 /*# sourceMappingURL=QuoteBoxStyle.css.map */

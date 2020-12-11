@@ -1,6 +1,8 @@
 import './App.css';
 import './QuoteBoxStyle.css';
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 class QuoteMachine extends React.Component {
   constructor(props) {
@@ -43,7 +45,7 @@ class QuoteMachine extends React.Component {
         <p id="text">"{this.state.quote}"</p>
         <p id="author">- {this.state.author}</p>
         <div id="button-bar">
-          <a href={this.state.tweet} target="_blank" id="tweet-quote">Tweet</a>
+          <a href={this.state.tweet} target="_blank" id="tweet-quote"><FontAwesomeIcon id="icon" icon={faPaperPlane} /></a>
           <button id="new-quote" onClick={this.getQuote}>New Quote</button>
         </div>
       </div>
