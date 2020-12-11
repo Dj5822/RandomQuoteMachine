@@ -7,7 +7,8 @@ class QuoteMachine extends React.Component {
     super(props);
     this.state = {
       quote: "",
-      author: ""
+      author: "",
+      tweet: ""
     }
     this.getQuote = this.getQuote.bind(this);
   }
@@ -18,9 +19,10 @@ class QuoteMachine extends React.Component {
       .then(data => {
         this.setState({
           quote: `${data.content}`,
-          author: `${data.author}`
-        });
+          author: `${data.author}`,
+          tweet: "https://twitter.com/intent/tweet?text=\""+`${data.content}`+"\" "+`${data.author}`
       });
+    });
   }
 
   getQuote(){
@@ -29,9 +31,10 @@ class QuoteMachine extends React.Component {
       .then(data => {
         this.setState({
           quote: `${data.content}`,
-          author: `${data.author}`
-        });
+          author: `${data.author}`,
+          tweet: "https://twitter.com/intent/tweet?text=\""+`${data.content}`+"\" "+`${data.author}`
       });
+    });
   }
 
   render(){
@@ -40,7 +43,7 @@ class QuoteMachine extends React.Component {
         <p id="text">"{this.state.quote}"</p>
         <p id="author">- {this.state.author}</p>
         <div id="button-bar">
-          <a href="twitter.com/intent/tweet" target="_blank" id="tweet-quote">Tweet</a>
+          <a href={this.state.tweet} target="_blank" id="tweet-quote">Tweet</a>
           <button id="new-quote" onClick={this.getQuote}>New Quote</button>
         </div>
       </div>
