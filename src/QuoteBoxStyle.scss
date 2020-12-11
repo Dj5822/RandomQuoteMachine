@@ -1,4 +1,63 @@
+$main-color: #282c34;
+$highlight-color: #40444c;
+$sub-color: white;
+
+.App {
+  background-color: $main-color;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $main-color;
+}
+
 #quote-box {
+  background-color: $sub-color;
   border-style: solid;
-  height: auto;
+  border-color: $sub-color;
+  border-radius: 6px;
+  width: 500px;
+
+  padding-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+
+  font-size: calc(10px + 2vh);
+  text-align: center;
+
+  #text {
+    padding-left: 10px;
+    padding-right: 20px;
+  }
+
+  #author {
+    font-size: 70%;
+  }
+
+  #button-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  #new-quote {
+    background-color: $main-color;
+    color: $sub-color;
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 3px;
+  }
+
+  #new-quote:hover {
+    background-color: $highlight-color;
+  }
+
+  #tweet-quote {
+    margin-right: 150px;
+  }
 }

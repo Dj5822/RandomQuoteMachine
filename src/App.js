@@ -12,6 +12,17 @@ class QuoteMachine extends React.Component {
     this.getQuote = this.getQuote.bind(this);
   }
 
+  componentDidMount(){
+    fetch('https://api.quotable.io/random')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          quote: `${data.content}`,
+          author: `${data.author}`
+        });
+      });
+  }
+
   getQuote(){
     fetch('https://api.quotable.io/random')
       .then(response => response.json())
@@ -26,10 +37,12 @@ class QuoteMachine extends React.Component {
   render(){
     return(
       <div id="quote-box">
-        <p id="text">{this.state.quote}</p>
-        <p id="author">Author: {this.state.author}</p>
-        <button id="new-quote" onClick={this.getQuote}>New Quote</button>
-        <a href="_blank" id="tweet-quote">Tweet</a>
+        <p id="text">"{this.state.quote}"</p>
+        <p id="author">- {this.state.author}</p>
+        <div id="button-bar">
+          <a href="twitter.com/intent/tweet" target="_blank" id="tweet-quote">Tweet</a>
+          <button id="new-quote" onClick={this.getQuote}>New Quote</button>
+        </div>
       </div>
     );
   }

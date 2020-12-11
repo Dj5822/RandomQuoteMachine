@@ -1,6 +1,52 @@
+.App {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #282c34;
+}
+
 #quote-box {
+  background-color: white;
   border-style: solid;
-  height: auto;
+  border-color: white;
+  border-radius: 6px;
+  width: 500px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  font-size: calc(10px + 2vh);
+  text-align: center;
+}
+#quote-box #text {
+  padding-left: 10px;
+  padding-right: 20px;
+}
+#quote-box #author {
+  font-size: 70%;
+}
+#quote-box #button-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#quote-box #new-quote {
+  background-color: #282c34;
+  color: white;
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 3px;
+}
+#quote-box #new-quote:hover {
+  background-color: #40444c;
+}
+#quote-box #tweet-quote {
+  margin-right: 150px;
 }
 
 /*# sourceMappingURL=QuoteBoxStyle.css.map */
