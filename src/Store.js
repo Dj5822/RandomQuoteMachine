@@ -1,6 +1,6 @@
 import { createStore } from 'redux';
 
-const NEWQUOTE = 'NEWQUOTE';
+const UPDATE = 'UPDATE';
 
 const INITIALSTATE = {
   quote: "",
@@ -10,27 +10,24 @@ const INITIALSTATE = {
 
 const QuoteReducer = (state = INITIALSTATE, action) => {
   switch (action.type) {
-    case NEWQUOTE:
-      fetch('https://api.quotable.io/random')
-        .then(response => response.json())
-        .then(data => {
-          return ({
-            quote: `${data.content}`,
-            author: `${data.author}`,
-            tweet: "https://twitter.com/intent/tweet?text=\""+`${data.content}`+"\" "+`${data.author}`
-          });
-        });
-        break;
+    case UPDATE:
+      return ({
+        quote: action.values.quote,
+        author: action.values.author,
+        tweet: action.values.tweet
+      });
     default:
       return state;
   }
 };
 
-const loadQuote = () => {
+const updateValues = (newValues) => {
   return {
-    type: NEWQUOTE
+    type: UPDATE,
+    values: newValues
   }
 }
 
 const store = createStore(QuoteReducer);
 export { store };
+export { updateValues };

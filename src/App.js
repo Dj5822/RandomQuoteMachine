@@ -5,7 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 
 import { Provider } from 'react-redux';
+import { connect } from 'react-redux';
 import { store } from './Store.js';
+import { updateValues } from './Store.js';
 
 class QuoteMachine extends React.Component {
   constructor(props) {
@@ -13,14 +15,27 @@ class QuoteMachine extends React.Component {
     this.getQuote = this.getQuote.bind(this);
   }
 
+  loadQuote(){
+    fetch('https://api.quotable.io/random')
+      .then(response => response.json())
+      .then(data => {
+        this.props.update({
+          quote: `${data.content}`,
+          author: `${data.author}`,
+          tweet: "https://twitter.com/intent/tweet?text=\""
+          .concat(`${data.content}`).concat("\" ").concat(`${data.author}`)
+        });
+      });
+  }
+
   // loads new quote after application starts.
   componentDidMount(){
-    this.props.loadNewQuote();
+    this.loadQuote();
   }
 
   // loads new quote when button is pressed.
   getQuote(){
-    this.props.loadNewQuote();
+    this.loadQuote();
   }
 
   render(){
@@ -29,7 +44,7 @@ class QuoteMachine extends React.Component {
         <p id="text">"{this.props.quote}"</p>
         <p id="author">- {this.props.author}</p>
         <div id="button-bar">
-          <a href={this.props.tweet} target="_blank" id="tweet-quote"><FontAwesomeIcon id="icon" icon={faPaperPlane} /></a>
+          <a href={this.props.tweet} target="_blank" rel="noreferrer" id="tweet-quote"><FontAwesomeIcon id="icon" icon={faPaperPlane} /></a>
           <button id="new-quote" onClick={this.getQuote}>New Quote</button>
         </div>
       </div>
@@ -47,8 +62,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadNewQuote: () => {
-      dispatch(loadQuote())
+    update: (newValues) => {
+      dispatch(updateValues(newValues));
     }
   }
 };
